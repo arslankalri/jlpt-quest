@@ -7,6 +7,7 @@
 import type { GrammarPoint } from '../types';
 import { n5GrammarBatch2 } from './grammarBatch2';
 import { n5GrammarBatch3 } from './grammarBatch3';
+import { n5GrammarBatch4 } from './grammarBatch4';
 
 const n5GrammarBatch1: GrammarPoint[] = [
   {
@@ -933,6 +934,7 @@ export const n5Grammar: GrammarPoint[] = [
   ...n5GrammarBatch1,
   ...n5GrammarBatch2,
   ...n5GrammarBatch3,
+  ...n5GrammarBatch4,
 ];
 
 export const getGrammarById = (id: string): GrammarPoint | undefined =>

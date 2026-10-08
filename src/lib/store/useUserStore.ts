@@ -382,9 +382,9 @@ export const useMasteryStats = () => {
     (s) => s.progress,
   );
   // N5 targets (scaled to current implemented curriculum)
-  const N5_KANJI_TOTAL = 104;
+  const N5_KANJI_TOTAL = 105;
   const N5_VOCAB_TOTAL = 802;
-  const N5_GRAMMAR_TOTAL = 35;
+  const N5_GRAMMAR_TOTAL = 45;
 
   return {
     kanjiPercent: Math.round((kanjiMastered.length / N5_KANJI_TOTAL) * 100),

@@ -728,7 +728,9 @@ export const n5VocabBatch1: Vocabulary[] = [
     ],
     "partOfSpeech": "suffix",
     "level": "N5",
-    "kanjiIds": [],
+    "kanjiIds": [
+      "n5-k-105"
+    ],
     "exampleSentences": [
       {
         "id": "n5-v-016-ex-001",

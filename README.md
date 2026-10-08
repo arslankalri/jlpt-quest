@@ -6,7 +6,8 @@ An interactive, modern, full-featured web application designed to help learners 
 
 ## ✨ Features
 
-- **漢 104 N5 Kanji**:
+- **漢 105 N5 Kanji**:
+  - Full coverage of all 103 kanji from the official JLPT list + textbook essentials (家, 音).
   - Full animated stroke order paths (SVG vector curves).
   - Interactive stroke writing canvas for active recall.
   - ELI5 mnemonics, kun'yomi, on'yomi, and real-life context tags.
@@ -16,8 +17,8 @@ An interactive, modern, full-featured web application designed to help learners 
   - Native browser audio speech synthesis (`SpeechSynthesisUtterance`).
   - Context-aware furigana ruby rendering with Hepburn romaji and English definitions.
   - Filter by part of speech (Nouns, Verbs, い-Adjectives, な-Adjectives, Counters, Suffixes, Expressions).
-- **✏️ 35 Complete N5 Grammar Lessons**:
-  - Structured coverage of the full Genki I & Minna no Nihongo I curricula.
+- **✏️ 45 Complete N5 Grammar Lessons**:
+  - Comprehensive coverage of the full Genki I & Minna no Nihongo I curricula.
   - ELI5 analogies (e.g. *は is the spotlight on the topic, が is the pointing finger*).
   - Formulas, typical beginner pitfalls, and natural dialogues.
 - **🗾 Real-Life Japanese Scenarios**:

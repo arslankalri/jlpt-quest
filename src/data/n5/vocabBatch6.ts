@@ -1737,7 +1737,8 @@ export const n5VocabBatch6: Vocabulary[] = [
     "level": "N5",
     "kanjiIds": [
       "n5-k-011",
-      "n5-k-021"
+      "n5-k-021",
+      "n5-k-105"
     ],
     "exampleSentences": [
       {

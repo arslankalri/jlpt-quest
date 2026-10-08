@@ -1,0 +1,224 @@
+'use client';
+
+import React from 'react';
+import { QuizEngine } from '@/components/quiz/QuizEngine';
+import type { QuizQuestion } from '@/data/types';
+import { HelpCircle } from 'lucide-react';
+
+const N5_SAMPLE_QUIZ: QuizQuestion[] = [
+  {
+    id: 'n5-q-1',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'How do you read this kanji?',
+    promptJP: '休',
+    options: ['やす(む)', 'み(る)', 'い(く)', 'た(べる)'],
+    correctAnswer: 'やす(む)',
+    explanation: '休 has the kun\'yomi reading やす.む (yasumu), meaning "to rest".',
+  },
+  {
+    id: 'n5-q-2',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does 「食べる」 (taberu) mean?',
+    options: ['To drink', 'To eat', 'To read', 'To speak'],
+    correctAnswer: 'To eat',
+    explanation: '食べる (たべる / taberu) is an ichidan verb meaning "to eat".',
+  },
+  {
+    id: 'n5-q-3',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Choose the correct particle: 「りんご ( ? ) 食べます。」',
+    options: ['は', 'が', 'を', 'に'],
+    correctAnswer: 'を',
+    explanation: 'を (wo) marks the direct object of the verb. You are eating the apple, so use を.',
+  },
+  {
+    id: 'n5-q-4',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'Which reading is correct for 「今日」?',
+    promptJP: '今日',
+    options: ['きょう', 'こんにち', 'いまひ', 'こんじつ'],
+    correctAnswer: 'きょう',
+    explanation: '今日 as a complete word for "today" is read as きょう (kyou).',
+  },
+  {
+    id: 'n5-q-5',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does 「山」 (yama) depict and mean?',
+    promptJP: '山',
+    options: ['River', 'Mountain', 'Tree', 'Sun'],
+    correctAnswer: 'Mountain',
+    explanation: '山 represents three mountain peaks and means "mountain".',
+  },
+  {
+    id: 'n5-q-6',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Which particle indicates location where an action happens: 「図書館 ( ? ) 本を読みます。」',
+    options: ['に', 'で', 'へ', 'を'],
+    correctAnswer: 'で',
+    explanation: 'で marks the location where an active action takes place (reading a book at the library).',
+  },
+  {
+    id: 'n5-q-7',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'What is the reading for the day of the week 「金曜日」?',
+    promptJP: '金曜日',
+    options: ['すいようび', 'きんようび', 'もくようび', 'どようび'],
+    correctAnswer: 'きんようび',
+    explanation: '金 (gold/metal) is used for Friday: きんようび (kinyoubi).',
+  },
+  {
+    id: 'n5-q-8',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does the adjective 「高い」 (takai) mean?',
+    options: ['Cheap / Inexpensive', 'Difficult / Hard', 'Expensive / Tall', 'Delicious / Tasty'],
+    correctAnswer: 'Expensive / Tall',
+    explanation: '高い (たかい / takai) means expensive (high price) or tall/high (altitude).',
+  },
+  {
+    id: 'n5-q-9',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Choose the correct expression for asking permission: 「ここに座っ ( ? ) ですか。」',
+    options: ['てもいい', 'たい', 'てください', 'たことがある'],
+    correctAnswer: 'てもいい',
+    explanation: '〜てもいいですか is the standard N5 structure for asking permission ("May I sit here?").',
+  },
+  {
+    id: 'n5-q-10',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does the kanji 「本」 mean in 「日本」 and 「本屋」?',
+    promptJP: '本',
+    options: ['Tree / Forest', 'Book / Origin', 'Water / River', 'Middle / Center'],
+    correctAnswer: 'Book / Origin',
+    explanation: '本 means origin (as in 日本, origin of the sun) and book (as in 本屋, book shop).',
+  },
+  {
+    id: 'n5-q-11',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'What is the reading for 「駅」?',
+    promptJP: '駅',
+    options: ['えき', 'みち', 'いえ', 'まち'],
+    correctAnswer: 'えき',
+    explanation: '駅 is read as えき (eki) and means "train station".',
+  },
+  {
+    id: 'n5-q-12',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Choose the correct form for an ongoing action: 「今、テレビを ( ? ) います。」',
+    options: ['見て', '見', '見ない', '見たい'],
+    correctAnswer: '見て',
+    explanation: 'Ongoing progressive action uses the て-form + います (見ています = "is watching right now").',
+  },
+  {
+    id: 'n5-q-13',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does 「魚」 (sakana) mean?',
+    promptJP: '魚',
+    options: ['Fish', 'Meat', 'Vegetable', 'Fruit'],
+    correctAnswer: 'Fish',
+    explanation: '魚 (さかな / sakana) means "fish".',
+  },
+  {
+    id: 'n5-q-14',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Select the polite request NOT to do something: 「ここで写真を ( ? ) でください。」',
+    options: ['撮らない', '撮って', '撮る', '撮り'],
+    correctAnswer: '撮らない',
+    explanation: '〜ないでください attaches to the negative ない-form of the verb ("Please do not take pictures").',
+  },
+  {
+    id: 'n5-q-15',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does 「電車より新幹線のほうが速いです」 mean?',
+    options: [
+      'The bullet train is faster than local trains',
+      'Local trains are faster than the bullet train',
+      'Both trains run at the same speed',
+      'Neither train is fast',
+    ],
+    correctAnswer: 'The bullet train is faster than local trains',
+    explanation: 'A より B のほうが means "B is more ... than A". Therefore the bullet train (新幹線) is faster than local trains (電車).',
+  },
+  {
+    id: 'n5-q-16',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'What is the reading for 「道」?',
+    promptJP: '道',
+    options: ['みち', 'かわ', 'やま', 'はな'],
+    correctAnswer: 'みち',
+    explanation: '道 is read as みち (michi) and means "street", "road", or "way".',
+  },
+  {
+    id: 'n5-q-17',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Choose the pattern for selecting the #1 item in a group: 「くだもの ( ? ) りんごが一番好きです。」',
+    options: ['の中で', 'より', 'から', 'まで'],
+    correctAnswer: 'の中で',
+    explanation: '〜の中で marks the category when selecting the superlative number one (一番).',
+  },
+  {
+    id: 'n5-q-18',
+    type: 'recognition',
+    level: 'N5',
+    prompt: 'What does the kanji 「花」 mean?',
+    promptJP: '花',
+    options: ['Flower', 'Grass', 'Tree', 'Rain'],
+    correctAnswer: 'Flower',
+    explanation: '花 (はな / hana) means "flower".',
+  },
+  {
+    id: 'n5-q-19',
+    type: 'fill-blank',
+    level: 'N5',
+    prompt: 'Choose the correct form for expressing purpose: 「デパートへ服を ( ? ) に行きます。」',
+    options: ['買い', '買う', '買って', '買わない'],
+    correctAnswer: '買い',
+    explanation: 'The purpose of movement pattern attaches to the verb\'s ます-stem (買いに行きます = "going to buy").',
+  },
+  {
+    id: 'n5-q-20',
+    type: 'reading',
+    level: 'N5',
+    prompt: 'Which reading is correct for 「会社」?',
+    promptJP: '会社',
+    options: ['かいしゃ', 'がっこう', 'えきいん', 'としょかん'],
+    correctAnswer: 'かいしゃ',
+    explanation: '会社 is read as かいしゃ (kaisha) and means "company" or "office".',
+  },
+];
+
+export default function QuizPage() {
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h1 className="text-3xl font-extrabold text-stone-900 dark:text-stone-100 flex items-center gap-2">
+          <HelpCircle className="w-7 h-7 text-red-600" />
+          Interactive JLPT N5 Challenge Quiz
+        </h1>
+        <p className="text-sm text-stone-500 mt-1">
+          Test your recognition, readings, particles, and grammar with instant explanations.
+        </p>
+      </div>
+
+      <div className="py-4">
+        <QuizEngine questions={N5_SAMPLE_QUIZ} />
+      </div>
+    </div>
+  );
+}
